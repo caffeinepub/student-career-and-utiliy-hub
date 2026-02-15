@@ -1,0 +1,655 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 23,
+  "summary": "Build a modern, mobile-first static website \"Student Hub\" for Indian college/engineering students featuring academic calculators, a deterministic career roadmap builder (200+ paths), resume/placement helpers, daily utility tools, dark mode, ad placeholders—no login or backend—plus behind-the-scenes SEO optimization and SEO-friendly tool-specific routes/pages without changing the existing visual design/layout.",
+  "architectural_notes": [
+    "No backend; pure HTML/CSS/JavaScript; fully static deployable (GitHub Pages compatible).",
+    "No login/authentication required.",
+    "Tools open in modal popups or separate pages; calculations should be instant without page reload.",
+    "Mobile-first responsive design targeting mobile/tablet/desktop.",
+    "Include light/dark mode with smooth transitions.",
+    "Add ad placeholder containers in specified locations for future monetization.",
+    "SEO-friendly semantic structure and fast-loading performance goals.",
+    "Do not add any AI chatbot or external AI API integrations; proceed with logo-only updates.",
+    "Remove/avoid any 'using caffeine.ai' credit text; use 'For Indian Students' instead where applicable.",
+    "Do not change any visible UI/design/layout/colors/fonts/spacing/components/section order; SEO improvements must be behind-the-scenes only."
+  ],
+  "known_issues": [
+    "Site currently shows a blank/white screen (render/load failure) instead of the UI.",
+    "Provided logo image currently does not match the user-uploaded logo (wrong image used).",
+    "Logo contains unwanted borders; needs cropping/cleanup and rounded/curved edges with proper sizing/alignment in UI.",
+    "Navbar/site logo is still not visible (logo not rendering/displaying in UI).",
+    "Privacy Policy URL/link/page appears to be incorrect or not working (\"Privacy Policy url\")."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-build-a-modern-fully-responsive-mobile-first-single-page-website-named-student-career-utility-hub-targeted-at-indian-engineering-college-students-with-sections-hero-academic-tools-career-roadmap-builder-resume-placement-help-daily-utility-tools-and-footer-the-site-must-not-require-login",
+      "title": "Build a modern, fully responsive, mobile-first single-page website named \"Student Career & Utility Hub\" targeted at Indian engineering/college students, with sections: Hero, Academic Tools, Career Roadmap Builder, Resume & Placement Help, Daily Utility Tools, and Footer; the site must not require login.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-consistent-modern-visual-theme-across-the-site-soft-gradient-background-rounded-card-based-layout-clean-typography-inter-or-poppins-subtle-shadows-smooth-hover-press-animations-and-smooth-light-dark-mode-transitions-avoid-overly-complex-visuals-and-keep-ui-beginner-friendly",
+      "title": "Apply a consistent modern visual theme across the site: soft gradient background, rounded card-based layout, clean typography (Inter or Poppins), subtle shadows, smooth hover/press animations, and smooth light/dark mode transitions; avoid overly complex visuals and keep UI beginner-friendly.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-sticky-navigation-bar-with-anchor-links-to-each-homepage-section-hero-academic-tools-career-roadmap-resume-placement-daily-utilities-and-a-light-dark-mode-toggle-navigation-must-be-touch-friendly-on-mobile-and-not-obstruct-content",
+      "title": "Implement a sticky navigation bar with anchor links to each homepage section (Hero, Academic Tools, Career Roadmap, Resume/Placement, Daily Utilities) and a light/dark mode toggle; navigation must be touch-friendly on mobile and not obstruct content.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-hero-section-with-headline-plan-your-career-track-your-academics-build-your-future-subheading-free-tools-career-roadmaps-for-students-two-cta-buttons-labeled-start-career-roadmap-and-use-academic-tools-that-scroll-to-the-corresponding-sections-and-a-clean-student-career-growth-illustration",
+      "title": "Create the Hero section with: headline \"Plan Your Career. Track Your Academics. Build Your Future.\", subheading \"Free tools & career roadmaps for students.\", two CTA buttons labeled \"Start Career Roadmap\" and \"Use Academic Tools\" that scroll to the corresponding sections, and a clean student/career-growth illustration.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-subtle-ad-placeholder-sections-reserved-for-future-monetization-one-after-the-hero-one-between-major-tool-group-sections-and-a-footer-banner-placeholder-placeholders-must-be-clearly-styled-as-placeholders-but-visually-subtle-and-non-intrusive",
+      "title": "Add subtle ad placeholder sections reserved for future monetization: one after the Hero, one between major tool group sections, and a footer banner placeholder; placeholders must be clearly styled as placeholders but visually subtle and non-intrusive.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-academic-tools-section-display-tool-cards-with-icons-names-and-short-descriptions-each-tool-opens-in-a-modal-dialog-or-a-dedicated-tool-view-and-supports-instant-real-time-calculation-without-page-reload",
+      "title": "Academic Tools section: display tool cards with icons, names, and short descriptions; each tool opens in a modal dialog (or a dedicated tool view) and supports instant, real-time calculation without page reload.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-cgpa-sgpa-calculator-tool-allow-entering-multiple-subjects-with-a-credit-value-and-b-grade-selection-input-compute-sgpa-cgpa-as-weighted-average-and-display-cgpa-plus-percentage-using-a-common-indian-conversion-formula-show-results-in-real-time",
+      "title": "Implement CGPA/SGPA Calculator tool: allow entering multiple subjects with (a) credit value and (b) grade selection/input; compute SGPA/CGPA as weighted average and display CGPA plus percentage using a common Indian conversion formula; show results in real time.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-attendance-calculator-tool-inputs-for-total-classes-and-attended-classes-outputs-attendance-percentage-and-a-dynamic-message-you-can-bunk-x-more-classes-based-on-maintaining-at-least-75-attendance-unless-the-ui-explicitly-lets-the-user-change-the-threshold",
+      "title": "Implement Attendance Calculator tool: inputs for total classes and attended classes; outputs attendance percentage and a dynamic message \"You can bunk X more classes\" (based on maintaining at least 75% attendance unless the UI explicitly lets the user change the threshold).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-percentage-calculator-tool-input-marks-obtained-and-total-marks-output-percentage-instantly-with-appropriate-formatting-and-validation",
+      "title": "Implement Percentage Calculator tool: input marks obtained and total marks; output percentage instantly with appropriate formatting and validation.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-marks-predictor-tool-input-internal-marks-and-expected-exam-marks-output-predicted-final-score-instantly-include-basic-validation-and-clear-labeling-for-each-component",
+      "title": "Implement Marks Predictor tool: input internal marks and expected exam marks; output predicted final score instantly; include basic validation and clear labeling for each component.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ai-career-roadmap-builder-section-main-feature-provide-a-career-selection-dropdown-with-options-data-analyst-ai-ml-engineer-web-developer-cyber-security-mba-government-jobs-inputs-for-current-year-1st-2nd-3rd-final-current-skills-free-text-and-weekly-study-hours-a-generate-roadmap-action-renders-a-visually-engaging-roadmap-output",
+      "title": "AI Career Roadmap Builder section (main feature): provide a career selection dropdown with options (Data Analyst, AI / ML Engineer, Web Developer, Cyber Security, MBA, Government Jobs), inputs for current year (1st/2nd/3rd/Final), current skills (free text), and weekly study hours; a Generate Roadmap action renders a visually engaging roadmap output.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-roadmap-output-ui-present-results-in-a-timeline-progress-style-layout-with-step-by-step-boxes-and-clean-cards-with-check-icons-including-required-skills-tools-to-learn-recommended-projects-internship-strategy-3-6-12-month-plan-and-an-india-based-salary-range-estimate-roadmap-content-must-be-deterministic-template-based-no-external-ai-calls",
+      "title": "Roadmap Output UI: present results in a timeline/progress-style layout with step-by-step boxes and clean cards with check icons, including: Required Skills, Tools to Learn, Recommended Projects, Internship Strategy, 3–6–12 Month Plan, and an India-based salary range estimate; roadmap content must be deterministic/template-based (no external AI calls).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-resume-placement-help-section-display-four-tool-cards-resume-bullet-generator-internship-email-template-generator-interview-preparation-checklist-linkedin-profile-checklist-each-opens-in-an-accessible-modal-and-provides-simple-interactive-generation-checklist-ux-with-copy-to-clipboard-support",
+      "title": "Resume & Placement Help section: display four tool cards (Resume Bullet Generator, Internship Email Template Generator, Interview Preparation Checklist, LinkedIn Profile Checklist). Each opens in an accessible modal and provides simple interactive generation/checklist UX with copy-to-clipboard support.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-daily-utility-tools-section-provide-cards-that-open-tools-age-calculator-emi-calculator-bmi-calculator-unit-converter-with-instant-calculations-and-a-fast-clean-responsive-ui",
+      "title": "Daily Utility Tools section: provide cards that open tools (Age Calculator, EMI Calculator, BMI Calculator, Unit Converter) with instant calculations and a fast, clean, responsive UI.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-footer-add-a-simple-footer-containing-links-sections-for-about-contact-and-privacy-policy-content-can-be-concise-but-must-exist-plus-a-subtle-footer-ad-placeholder-banner-as-requested",
+      "title": "Footer: add a simple footer containing links/sections for About, Contact, and Privacy Policy (content can be concise but must exist), plus a subtle footer ad placeholder banner as requested.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-seo-performance-ensure-semantic-html-structure-single-h1-correct-section-headings-meta-title-description-fast-loading-assets-and-no-backend-dependency-the-site-must-work-as-a-fully-static-deployment",
+      "title": "SEO & performance: ensure semantic HTML structure (single H1, correct section headings), meta title/description, fast-loading assets, and no backend dependency; the site must work as a fully static deployment.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-do-not-implement-or-require-any-login-authentication-flows-including-internet-identity-anywhere-in-the-ui",
+      "title": "Do not implement or require any login/authentication flows (including Internet Identity) anywhere in the UI.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rename-the-site-brand-to-exactly-student-career-and-utiliy-hub-across-the-ui-and-seo-metadata-including-at-minimum-the-navbar-brand-text-and-the-html-document-title",
+      "title": "Rename the site/brand to exactly \"Student career and utiliy hub\" across the UI and SEO metadata, including (at minimum) the navbar brand text and the HTML document <title>.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-site-logo-as-a-static-image-asset-and-display-it-in-the-sticky-navbar-next-to-the-site-name-with-responsive-sizing-and-proper-alt-text",
+      "title": "Add a site logo as a static image asset and display it in the sticky navbar next to the site name with responsive sizing and proper alt text.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-expand-the-career-roadmap-builder-career-selection-to-support-200-distinct-career-path-options-and-update-roadmap-generation-so-that-selecting-any-of-those-options-produces-a-deterministic-roadmap-output-no-external-ai-calls",
+      "title": "Expand the Career Roadmap Builder career selection to support 200+ distinct career path options, and update roadmap generation so that selecting any of those options produces a deterministic roadmap output (no external AI calls).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-the-usability-of-the-career-path-selector-to-handle-200-options-by-adding-search-and-or-category-grouping-in-the-career-roadmap-builder-form",
+      "title": "Improve the usability of the career path selector to handle 200+ options by adding search and/or category grouping in the Career Roadmap Builder form.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-premium-looking-replacement-for-the-existing-site-logo-used-in-the-navbar-keeping-the-brand-name-as-student-career-and-utiliy-hub-and-ensuring-the-logo-works-well-in-both-light-and-dark-mode",
+      "title": "Create a premium-looking replacement for the existing site logo used in the navbar, keeping the brand name as \"Student career and utiliy hub\" and ensuring the logo works well in both light and dark mode.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-navbar-logo-image-with-the-user-uploaded-image-student-hub-png-keeping-the-existing-logo-file-path-used-by-the-app-assets-generated-site-logo-dim-256x256-png-so-the-new-logo-appears-everywhere-the-current-logo-is-shown",
+      "title": "Replace the current navbar logo image with the user-uploaded image \"Student Hub.png\", keeping the existing logo file path used by the app (\"/assets/generated/site-logo.dim_256x256.png\") so the new logo appears everywhere the current logo is shown.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-visible-footer-credit-text-using-caffeine-ai-with-the-exact-text-for-indian-students-and-ensure-caffeine-ai-is-not-visible-anywhere-in-the-ui-footer-credit-line",
+      "title": "Replace the visible footer credit text \"using caffeine.ai\" with the exact text \"For Indian Students\" and ensure \"caffeine.ai\" is not visible anywhere in the UI footer credit line.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-global-homepage-seo-metadata-in-the-html-entry-so-the-homepage-uses-the-exact-provided-seo-title-and-meta-description-without-changing-any-visible-ui",
+      "title": "Update global homepage SEO metadata in the HTML entry so the homepage uses the exact provided SEO title and meta description, without changing any visible UI.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-full-global-seo-tags-across-the-app-behind-the-scenes-only-meta-keywords-open-graph-tags-og-title-og-description-og-type-og-url-og-image-twitter-card-tags-and-a-canonical-url-tag-ensure-per-route-values-can-be-set-for-tool-pages",
+      "title": "Add full global SEO tags across the app (behind the scenes only): meta keywords, Open Graph tags (og:title, og:description, og:type, og:url, og:image), Twitter card tags, and a canonical URL tag; ensure per-route values can be set for tool pages.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-seo-friendly-url-structure-by-adding-dedicated-routes-pages-for-each-requested-tool-path-where-each-route-shows-the-same-existing-tool-ui-same-components-styling-spacing-and-behavior-but-isolated-to-that-tool-and-preserves-the-existing-homepage-as-is",
+      "title": "Implement an SEO-friendly URL structure by adding dedicated routes/pages for each requested tool path, where each route shows the same existing tool UI (same components, styling, spacing, and behavior) but isolated to that tool, and preserves the existing homepage as-is.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-heading-structure-for-each-tool-page-so-that-each-page-has-exactly-one-h1-targeting-the-main-keyword-for-that-page-followed-by-h2-headings-for-educational-sections-e-g-what-is-x-how-to-calculate-x-formula-conversions-frequently-asked-questions-without-changing-visual-styling",
+      "title": "Fix heading structure for each tool page so that each page has exactly one H1 targeting the main keyword for that page, followed by H2 headings for educational sections (e.g., What is X?, How to Calculate X?, Formula/Conversions, Frequently Asked Questions), without changing visual styling.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-800-1200-words-of-original-keyword-optimized-seo-content-below-each-tool-on-its-dedicated-tool-route-including-a-short-faq-section-using-natural-keyword-variations-and-avoiding-keyword-stuffing-keep-the-same-visual-design-system-and-do-not-modify-existing-tool-uis",
+      "title": "Add 800–1200 words of original, keyword-optimized SEO content below each tool on its dedicated tool route, including a short FAQ section, using natural keyword variations and avoiding keyword stuffing; keep the same visual design system and do not modify existing tool UIs.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-internal-linking-within-the-new-seo-content-blocks-to-related-tool-pages-using-natural-anchor-text-including-links-to-at-minimum-cgpa-calculator-career-roadmap-generator-resume-tools-and-attendance-calculator-where-contextually-relevant",
+      "title": "Add internal linking within the new SEO content blocks to related tool pages using natural anchor text, including links to (at minimum) CGPA calculator, Career Roadmap Generator, Resume tools, and Attendance calculator where contextually relevant.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-per-page-structured-data-json-ld-for-faq-schema-webapplication-schema-and-breadcrumb-schema-on-each-tool-route-and-the-homepage-without-affecting-layout",
+      "title": "Add per-page structured data (JSON-LD) for FAQ schema, WebApplication schema, and Breadcrumb schema on each tool route and the homepage, without affecting layout.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-image-seo-and-loading-behavior-without-changing-appearance-ensure-all-images-have-appropriate-alt-text-add-lazy-loading-where-safe-non-hero-images-and-ensure-images-are-optimized-compressed-in-the-build-output-without-visibly-altering-them",
+      "title": "Improve image SEO and loading behavior without changing appearance: ensure all images have appropriate alt text, add lazy-loading where safe (non-hero images), and ensure images are optimized/compressed in the build output without visibly altering them.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-technical-seo-assets-generate-and-include-robots-txt-and-sitemap-xml-that-list-the-homepage-and-all-tool-routes-and-ensure-every-route-sets-a-canonical-tag",
+      "title": "Add technical SEO assets: generate and include robots.txt and sitemap.xml that list the homepage and all tool routes, and ensure every route sets a canonical tag.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-behind-the-scenes-performance-optimizations-without-changing-visual-output-ensure-production-builds-are-minified-use-route-level-code-splitting-lazy-loading-for-tool-pages-and-avoid-loading-tool-page-only-code-on-the-homepage-where-possible",
+      "title": "Apply behind-the-scenes performance optimizations without changing visual output: ensure production builds are minified, use route-level code-splitting/lazy-loading for tool pages, and avoid loading tool-page-only code on the homepage where possible.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-blank-white-screen-issue-by-ensuring-the-app-is-rendered-within-the-tanstack-router-context-so-components-that-use-usenavigate-userouterstate-e-g-stickynavbar-do-not-crash-at-runtime",
+      "title": "Fix the blank/white screen issue by ensuring the app is rendered within the TanStack Router context so components that use `useNavigate` / `useRouterState` (e.g., `StickyNavbar`) do not crash at runtime.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rename-the-site-brand-to-exactly-student-hub-across-all-visible-ui-text-including-navbar-brand-text-and-footer-text-and-across-non-visible-seo-structured-data-configuration-where-the-site-name-is-emitted",
+      "title": "Rename the site brand to exactly \"Student Hub\" across all visible UI text (including navbar brand text and footer text) and across non-visible SEO/structured-data configuration where the site name is emitted.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-site-logo-asset-at-the-current-in-app-path-assets-generated-site-logo-dim-256x256-png-with-the-user-uploaded-logo-image-so-the-new-logo-appears-everywhere-the-current-logo-is-shown",
+      "title": "Replace the existing site logo asset at the current in-app path `/assets/generated/site-logo.dim_256x256.png` with the user-uploaded logo image so the new logo appears everywhere the current logo is shown.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-updated-logo-student-hub-branding-appears-consistently-on-all-routes-pages-homepage-and-each-dedicated-tool-page-including-during-route-level-lazy-loading-states",
+      "title": "Ensure the updated logo + \"Student Hub\" branding appears consistently on all routes/pages (homepage and each dedicated tool page), including during route-level lazy loading states.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-logo-asset-at-the-exact-path-assets-generated-site-logo-dim-256x256-png-so-it-matches-the-user-provided-logo-image-removing-any-unwanted-borders-margins-and-cropping-centering-to-the-main-logo-mark",
+      "title": "Update the existing logo asset at the exact path `/assets/generated/site-logo.dim_256x256.png` so it matches the user-provided logo image, removing any unwanted borders/margins and cropping/centering to the main logo mark.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-displayed-navbar-logo-has-clearly-curved-rounded-edges-and-is-properly-aligned-sized-across-mobile-and-desktop-without-distortion-no-stretching-squashing-while-continuing-to-use-the-same-img-src-path-assets-generated-site-logo-dim-256x256-png",
+      "title": "Ensure the displayed navbar logo has clearly curved/rounded edges and is properly aligned/sized across mobile and desktop without distortion (no stretching/squashing), while continuing to use the same `img` `src` path `/assets/generated/site-logo.dim_256x256.png`.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-navbar-logo-not-being-visible-by-ensuring-the-logo-asset-at-the-exact-path-assets-generated-site-logo-dim-256x256-png-is-present-in-the-frontend-static-assets-and-loads-successfully-no-404-on-the-homepage-and-all-tool-routes",
+      "title": "Fix the navbar logo not being visible by ensuring the logo asset at the exact path `/assets/generated/site-logo.dim_256x256.png` is present in the frontend static assets and loads successfully (no 404) on the homepage and all tool routes.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-navbar-logo-remains-visually-distinguishable-in-both-light-and-dark-mode-by-adjusting-only-the-logo-container-styling-not-the-overall-layout-so-the-logo-has-sufficient-contrast-against-the-navbar-background",
+      "title": "Ensure the navbar logo remains visually distinguishable in both light and dark mode by adjusting only the logo container styling (not the overall layout) so the logo has sufficient contrast against the navbar background.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-safe-ui-fallback-so-that-if-the-logo-image-fails-to-load-the-navbar-still-displays-a-clean-placeholder-mark-e-g-initials-within-the-same-rounded-logo-container-without-breaking-layout",
+      "title": "Add a safe UI fallback so that if the logo image fails to load, the navbar still displays a clean placeholder mark (e.g., initials) within the same rounded logo container without breaking layout.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-clickable-linkedin-profile-link-www-linkedin-com-in-dhiraj-kurhade-315a483a9-to-the-site-s-contact-area-in-the-footer",
+      "title": "Add a visible, clickable LinkedIn profile link (www.linkedin.com/in/dhiraj-kurhade-315a483a9) to the site’s Contact area in the footer.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-provided-google-adsense-loader-script-tag-to-the-global-html-entry-so-it-loads-on-every-route-homepage-all-tool-pages-script-async-src-https-pagead2-googlesyndication-com-pagead-js-adsbygoogle-js-client-ca-pub-3211787208566545-crossorigin-anonymous-script-place-it-in-frontend-index-html-inside-head-without-changing-any-visible-ui-text",
+      "title": "Add the provided Google AdSense loader script tag to the global HTML entry so it loads on every route (homepage + all tool pages): `<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3211787208566545\" crossorigin=\"anonymous\"></script>`. Place it in `frontend/index.html` inside `<head>` without changing any visible UI text.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-privacy-policy-route-at-privacy-policy-that-renders-a-standalone-privacy-policy-page-with-clear-english-content-describing-data-handling-no-login-no-personal-data-collection-calculations-performed-locally-in-the-browser-and-any-relevant-notes-about-third-party-scripts-e-g-google-adsense",
+      "title": "Add a dedicated Privacy Policy route at \"/privacy-policy\" that renders a standalone Privacy Policy page with clear English content describing data handling (no login, no personal data collection, calculations performed locally in the browser) and any relevant notes about third-party scripts (e.g., Google AdSense).",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-footer-privacy-policy-area-so-users-can-click-to-open-the-new-privacy-policy-page-do-not-remove-the-existing-short-privacy-summary-text-keep-it-readable-and-consistent-with-the-current-design",
+      "title": "Fix the footer \"Privacy Policy\" area so users can click to open the new \"/privacy-policy\" page (do not remove the existing short privacy summary text; keep it readable and consistent with the current design).",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-register-the-new-privacy-policy-route-in-the-tanstack-router-and-ensure-it-participates-in-the-existing-seo-system-dynamic-title-meta-canonical-by-adding-an-entry-for-privacy-policy-in-the-seo-route-metadata-configuration",
+      "title": "Register the new \"/privacy-policy\" route in the TanStack Router and ensure it participates in the existing SEO system (dynamic title/meta/canonical) by adding an entry for \"/privacy-policy\" in the SEO route metadata configuration.",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-static-sitemap-to-include-the-privacy-policy-url-so-it-is-discoverable-by-search-engines",
+      "title": "Update the static sitemap to include the \"/privacy-policy\" URL so it is discoverable by search engines.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create responsive homepage with hero section (headline, subheading, 2 CTA buttons) and student/career illustration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Academic Tools section with interactive tool cards opening in modal or separate pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement CGPA/SGPA calculator (credits+grades) with real-time CGPA and Indian percentage conversion",
+      "reqIds": [
+        "AR-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement Attendance calculator with attendance %, and 'You can bunk X more classes' dynamic output",
+      "reqIds": [
+        "AR-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement Percentage calculator (marks obtained/total) with instant calculation",
+      "reqIds": [
+        "AR-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement Marks predictor (internal + expected exam marks) to output final score",
+      "reqIds": [
+        "AR-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "AI Career Roadmap Builder: career dropdown + user inputs (year, skills, weekly hours) and generate roadmap output",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Roadmap output UI: timeline/progress-style layout with step-by-step cards (skills, tools, projects, internship strategy, 3/6/12 month plan, India salary range)",
+      "reqIds": [
+        "AR-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Resume & Placement Help section with modal tools (resume bullet generator, internship email template generator, interview checklist, LinkedIn checklist)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Daily Utility Tools section (age, EMI, BMI calculators; unit converter) with fast responsive UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Site-wide design system: soft gradient background, rounded cards, modern typography (Inter/Poppins), hover animations, smooth transitions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Light/Dark mode toggle",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Sticky navigation bar and footer pages/links (About, Contact, Privacy Policy)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add subtle ad placeholder sections (after hero, between tools, footer banner) for future monetization",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Performance/SEO requirements: static deployable (GitHub Pages), fast-loading, SEO-friendly structure; no backend; no login",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a site logo (navbar/hero) with appropriate sizing and responsive behavior",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Expand Career Roadmap Builder to include 200+ career path options (organized for usability, e.g., search/categories)",
+      "reqIds": [
+        "AR-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Design and add a premium-looking site logo (static asset/SVG) and use it in the navbar/branding; no chatbot to be added",
+      "reqIds": [
+        "AR-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Replace any visible text/link 'using caffeine.ai' with 'For Indian Students' across the site (e.g., footer/credits)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Update/replace the site logo asset with the new logo provided by the user and use it in navbar branding",
+      "reqIds": [
+        "AR-16",
+        "AR-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Global technical SEO pass without any visual/UI changes: set SEO title/description/keywords, Open Graph tags, canonical URLs, heading hierarchy (single H1), image alt text, internal linking, and add structured data (Schema markup)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Create SEO-friendly individual tool pages/routes (keeping exact same UI/design) for: /sgpa-calculator, /cgpa-calculator, /attendance-calculator, /career-roadmap-generator, /resume-bullet-generator, /internship-email-template, /interview-prep-checklist, /linkedin-profile-checklist, /age-calculator, /emi-calculator, /bmi-calculator, /unit-converter; each with unique SEO title + meta description",
+      "reqIds": [
+        "AR-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Add 800–1200 words of keyword-optimized SEO content below each tool on its dedicated page (e.g., What is X, formula, step-by-step, conversions, FAQs) with natural internal links to related tools; no keyword stuffing and no visual/layout changes",
+      "reqIds": [
+        "AR-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Add schema markup per page: FAQ schema, WebApplication schema, and Breadcrumb schema (no UI impact)",
+      "reqIds": [
+        "AR-22",
+        "AR-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Technical SEO + performance package without visual changes: robots.txt, sitemap.xml, caching headers where applicable, minify/bundle CSS & JS, optimize loading order, image lazy-loading/compression, mobile optimization checks, and ensure no broken links",
+      "reqIds": [
+        "AR-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Update homepage SEO title to \"SGPA Calculator, Career Roadmap Generator & Resume Tools for Engineering Students\" and meta description to the provided India-focused text (no visible UI change)",
+      "reqIds": [
+        "AR-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Fix the white screen (blank/white view) rendering issue so the site loads correctly in preview/live deployment",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Rename site/project brand to \"Student Hub\" across UI and SEO metadata",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Ensure the site logo is added/visible consistently across all pages/routes (including the dedicated tool pages)",
+      "reqIds": [
+        "AR-16",
+        "AR-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Generate a very attractive new site logo (suitable for navbar) and provide it as the project logo asset",
+      "reqIds": [
+        "AR-16",
+        "AR-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Add user's LinkedIn profile link (www.linkedin.com/in/dhiraj-kurhade-315a483a9) to the site (e.g., Contact/About/footer social link)",
+      "reqIds": [
+        "AR-13"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Integrate Google AdSense by adding the provided async adsbygoogle.js script tag (client ca-pub-3211787208566545) so ads can load in the existing ad placeholder containers",
+      "reqIds": [
+        "AR-14"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Student Hub",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

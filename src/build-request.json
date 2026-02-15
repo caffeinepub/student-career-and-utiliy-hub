@@ -1,0 +1,93 @@
+{
+  "kind": "build_request",
+  "title": "Fix Privacy Policy URL by adding a dedicated Privacy Policy page and link",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-46",
+      "text": "Add a dedicated Privacy Policy route at \"/privacy-policy\" that renders a standalone Privacy Policy page with clear English content describing data handling (no login, no personal data collection, calculations performed locally in the browser) and any relevant notes about third-party scripts (e.g., Google AdSense).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Privacy Policy urk"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigating to /privacy-policy renders a non-blank page in the existing site layout (StickyNavbar + Footer).",
+        "The Privacy Policy page uses English user-facing text.",
+        "The page content explicitly states that the site does not require login and that calculations are performed locally in the browser.",
+        "The page includes a note that third-party advertising scripts (Google AdSense) may use cookies/identifiers as applicable."
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "text": "Fix the footer \"Privacy Policy\" area so users can click to open the new \"/privacy-policy\" page (do not remove the existing short privacy summary text; keep it readable and consistent with the current design).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Privacy Policy urk"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the homepage and all tool pages, the footer contains a clearly clickable Privacy Policy link that navigates to /privacy-policy.",
+        "The footer layout remains consistent with the current design system (no major visual redesign)."
+      ]
+    },
+    {
+      "id": "REQ-48",
+      "text": "Register the new \"/privacy-policy\" route in the TanStack Router and ensure it participates in the existing SEO system (dynamic title/meta/canonical) by adding an entry for \"/privacy-policy\" in the SEO route metadata configuration.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Privacy Policy urk"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The router includes a working /privacy-policy route.",
+        "Visiting /privacy-policy updates document title, meta description, and canonical URL via the existing HeadTags mechanism.",
+        "The /privacy-policy SEO metadata is in English and consistent with the \"Student Hub\" brand name."
+      ]
+    },
+    {
+      "id": "REQ-49",
+      "text": "Update the static sitemap to include the \"/privacy-policy\" URL so it is discoverable by search engines.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Privacy Policy urk"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/public/sitemap.xml contains an additional <url> entry for https://studenthub.com/privacy-policy with reasonable changefreq/priority consistent with other informational pages.",
+        "robots.txt remains valid and continues to reference the sitemap URL."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not add or require any authentication/login flow (including Internet Identity).",
+    "Keep the backend unchanged (site remains fully static; no new backend dependencies).",
+    "Do not edit files under frontend/src/components/ui (shadcn components) or other immutable paths listed in SYSTEM_CONTEXT.",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Adding a full Terms & Conditions page (unless explicitly requested later).",
+    "Changing existing tool UIs, layouts, or calculations.",
+    "Adding any new third-party integrations beyond what is already present (e.g., no new analytics services)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
