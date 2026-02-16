@@ -1,73 +1,113 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Privacy Policy page, route wiring, footer link, SEO metadata, and sitemap entry",
+  "title": "Standalone ATS-friendly Resume Generator wizard (new tool route)",
   "requirements": [
     {
-      "id": "REQ-46",
-      "summary": "Create a standalone Privacy Policy page at /privacy-policy with clear English content about local-only calculations, no login, no personal data collection, and third-party ad scripts.",
+      "id": "REQ-54",
+      "summary": "Add a dedicated ATS Resume Generator route/page that implements a mobile-friendly step-by-step wizard covering all required resume sections with basic validation and no login.",
       "acceptanceCriteria": [
-        "Navigating to /privacy-policy renders a non-blank page in the existing site layout (StickyNavbar + Footer).",
-        "The Privacy Policy page uses English user-facing text.",
-        "The page content explicitly states that the site does not require login and that calculations are performed locally in the browser.",
-        "The page includes a note that third-party advertising scripts (Google AdSense) may use cookies/identifiers as applicable."
+        "A new dedicated page/route exists for the ATS Resume Generator tool and renders without runtime errors.",
+        "The tool UI is a step-by-step wizard with clear navigation (e.g., Next/Back) and does not require login.",
+        "Wizard steps include inputs for: Contact, Summary, Skills, Experience, Education, Certifications, Projects, and Keyword suggestions.",
+        "All inputs have basic validation and clear labels; the page remains mobile-friendly and consistent with the existing design system (Tailwind + shadcn)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/PrivacyPolicyPage.tsx",
+          "path": "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
           "operation": "create",
-          "description": "Add a dedicated Privacy Policy page component with readable, standalone layout and English policy text covering: no login required, no personal data collection, calculations performed locally in the browser, and a clear note about third-party advertising scripts (e.g., Google AdSense) potentially using cookies/identifiers."
+          "description": "Create the ATS Resume Generator wizard UI as a step-by-step flow (Contact, Summary, Skills, Experience, Education, Certifications, Projects, Keywords) with local state, basic per-step validation, and Next/Back navigation. Use shadcn-ui building blocks (e.g., Card, Button, Input, Textarea, Separator, Badge/Alert where applicable) composed via existing components (do not edit any files under frontend/src/components/ui). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/tools/resume/atsResumeTypes.ts",
+          "operation": "create",
+          "description": "Define TypeScript types/interfaces for the wizard data model (contact details, skills, experiences with action verbs + metrics prompts, education, certifications, projects, and keyword suggestion inputs/outputs) to keep the wizard implementation maintainable."
+        },
+        {
+          "path": "frontend/src/components/tools/resume/atsResumeValidation.ts",
+          "operation": "create",
+          "description": "Add lightweight synchronous validation helpers for required fields and common formatting checks (e.g., email/phone presence, required titles/companies/dates, non-empty arrays) used by the wizard to show clear inline errors."
+        },
+        {
+          "path": "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
+          "operation": "create",
+          "description": "Create a dedicated tool page that renders the wizard in the existing ToolPageLayout pattern (title, description, canonicalPath, content/faqs). Use shadcn-ui composition for any page-level containers if needed. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/seo/content/atsResumeGenerator.ts",
+          "operation": "create",
+          "description": "Add SEO content + FAQs arrays for the ATS Resume Generator page (student-focused, India-relevant, ATS-friendly guidance). Keep content plain and consistent with existing SEO content modules."
         }
       ]
     },
     {
-      "id": "REQ-47",
-      "summary": "Make the footer Privacy Policy area include a clear clickable link to /privacy-policy while keeping the existing short summary text and design consistency.",
+      "id": "REQ-55",
+      "summary": "Generate an ATS-friendly single-column plain-text resume preview from wizard inputs with one-click copy-to-clipboard and .txt download (no backend calls).",
       "acceptanceCriteria": [
-        "On the homepage and all tool pages, the footer contains a clearly clickable Privacy Policy link that navigates to /privacy-policy.",
-        "The footer layout remains consistent with the current design system (no major visual redesign)."
+        "The generated resume output is plain, ATS-friendly text (no tables, no multi-column formatting) and updates based on the wizard inputs.",
+        "A \"Copy\" action copies the full resume text to clipboard using the existing clipboard utility pattern.",
+        "A \"Download\" action downloads a .txt file containing the full resume text.",
+        "Export actions work in modern browsers and do not require any backend calls."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/sections/FooterSection.tsx",
+          "path": "frontend/src/components/tools/resume/atsResumeTextGenerator.ts",
+          "operation": "create",
+          "description": "Implement pure functions that transform wizard inputs into a single-column ATS-friendly plain-text resume string (section headings, bullet formatting, consistent spacing). Include local-only keyword suggestion heuristics derived from provided skills/experience/project text (no network calls)."
+        },
+        {
+          "path": "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
           "operation": "modify",
-          "description": "Update the existing Privacy Policy footer section to include a clearly clickable internal navigation link to /privacy-policy (using TanStack Router link utilities), while preserving the current short privacy summary text and overall footer layout/styling."
+          "description": "Wire live resume preview generation using atsResumeTextGenerator and render a plain-text preview panel. Add export actions: Copy uses frontend/src/lib/clipboard.ts copyToClipboard; Download creates a Blob and triggers a .txt file download with a sensible filename. Use shadcn-ui Button and any feedback patterns (e.g., toast/alert) via existing components/utilities. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/clipboard.ts",
+          "operation": "modify",
+          "description": "If needed for the new tool, extend robustness/UX while preserving the existing clipboard utility pattern (e.g., ensure errors propagate cleanly so the UI can show a failure message). Keep it compatible with modern browsers and fallback behavior."
         }
       ]
     },
     {
-      "id": "REQ-48",
-      "summary": "Register /privacy-policy in TanStack Router and add English SEO metadata so HeadTags updates title/meta/canonical for the new route with Student Hub branding.",
+      "id": "REQ-56",
+      "summary": "Register the new ATS Resume Generator route and integrate it into existing SEO metadata and sitemap.xml.",
       "acceptanceCriteria": [
-        "The router includes a working /privacy-policy route.",
-        "Visiting /privacy-policy updates document title, meta description, and canonical URL via the existing HeadTags mechanism.",
-        "The /privacy-policy SEO metadata is in English and consistent with the \"Student Hub\" brand name."
+        "The new ATS Resume Generator route is registered in frontend/src/routes/Router.tsx using the same lazy-loading/Suspense approach as other tool pages.",
+        "The new route has an SEO metadata entry in frontend/src/seo/seoRoutes.ts so HeadTags sets title/meta/canonical correctly.",
+        "frontend/public/sitemap.xml includes the new ATS Resume Generator URL with appropriate changefreq/priority consistent with other tool routes.",
+        "Navigating directly to the new URL loads the page and shows correct SEO title/description in the document head."
       ],
       "file_operations": [
         {
           "path": "frontend/src/routes/Router.tsx",
           "operation": "modify",
-          "description": "Add the /privacy-policy route to the TanStack Router route tree (wire it to the new PrivacyPolicyPage, preferably lazy-loaded like other pages). Also ensure HeadTags receives a reactive pathname from router state (not a one-time window.location.pathname) so title/meta/canonical update on SPA navigation."
+          "description": "Add a new lazy-loaded tool page import for AtsResumeGeneratorPage and register a dedicated route path for the ATS Resume Generator using the same createRoute pattern as existing tool pages (ensuring it participates in existing Suspense loading)."
         },
         {
           "path": "frontend/src/seo/seoRoutes.ts",
           "operation": "modify",
-          "description": "Add a new SEO metadata entry for '/privacy-policy' with English title/description/keywords and canonicalPath '/privacy-policy', keeping naming consistent with the Student Hub brand."
+          "description": "Add SEO metadata entry for the ATS Resume Generator route (title, description, keywords, canonicalPath) consistent with other tool routes and targeted to engineering students in India."
+        },
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "modify",
+          "description": "Insert a new <url> entry for the ATS Resume Generator route with changefreq/priority aligned to other tool routes in the sitemap."
         }
       ]
     },
     {
-      "id": "REQ-49",
-      "summary": "Add /privacy-policy to the static sitemap.xml so search engines can discover it while keeping robots.txt valid and still referencing the sitemap.",
+      "id": "REQ-57",
+      "summary": "Add a new tool card entry in the Resume & Placement Help section that navigates to the dedicated ATS Resume Generator page while leaving existing four tool cards and modal behavior unchanged.",
       "acceptanceCriteria": [
-        "frontend/public/sitemap.xml contains an additional <url> entry for https://studenthub.com/privacy-policy with reasonable changefreq/priority consistent with other informational pages.",
-        "robots.txt remains valid and continues to reference the sitemap URL."
+        "The Resume & Placement Help section shows an additional tool card for the ATS Resume Generator.",
+        "Clicking the ATS Resume Generator card navigates to the dedicated ATS Resume Generator route (full page).",
+        "The existing four tools (Resume Bullet Generator, Internship Email Template, Interview Prep Checklist, LinkedIn Profile Checklist) continue to open in the current modal behavior unchanged.",
+        "The new card matches the existing styling and responsive grid behavior."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/sitemap.xml",
+          "path": "frontend/src/components/sections/ResumePlacementSection.tsx",
           "operation": "modify",
-          "description": "Add a new <url> entry for https://studenthub.com/privacy-policy using changefreq/priority values consistent with other informational pages in the sitemap; do not remove or alter existing URLs."
+          "description": "Add a fifth tool card styled identically to existing cards that navigates (full page) to the ATS Resume Generator route using TanStack Router navigation. Keep the existing tools array + dialog/modal openTool behavior unchanged for the original four cards. Use existing shadcn-ui Card styling already present; do not edit any files under frontend/src/components/ui. Verify the component's usage instructions before implementing."
         }
       ]
     }

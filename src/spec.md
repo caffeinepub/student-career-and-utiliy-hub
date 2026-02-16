@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the Privacy Policy URL by adding a dedicated Privacy Policy page, linking to it from the footer, and ensuring it is discoverable and SEO-friendly.
+**Goal:** Add a standalone ATS-friendly Resume Generator wizard as a new page/route, with live plain-text resume preview and simple export options.
 
 **Planned changes:**
-- Add a new standalone Privacy Policy page at `/privacy-policy` within the existing site layout (StickyNavbar + Footer) with clear English content describing: no login requirement, no personal data collection, calculations performed locally in the browser, and notes about third-party advertising scripts (e.g., Google AdSense) potentially using cookies/identifiers.
-- Update the footer “Privacy Policy” area to include a clearly clickable link to `/privacy-policy`, while keeping the existing short privacy summary text and current design consistency.
-- Register the `/privacy-policy` route in TanStack Router and add corresponding SEO metadata so title/meta description/canonical update via the existing HeadTags mechanism.
-- Update `frontend/public/sitemap.xml` to include `https://studenthub.com/privacy-policy` with changefreq/priority consistent with other informational pages.
+- Create a new dedicated TanStack Router route/page for an ATS Resume Generator implemented as a step-by-step wizard (Next/Back) with sections: Contact details, Professional summary, Skills (hard + soft), Work experience (with ATS action verbs + metrics prompts), Education, Certifications, Projects, and Keyword suggestions.
+- Add basic validation, clear labels, and ensure the page is mobile-friendly and consistent with existing Tailwind + shadcn styling; no login required.
+- Generate an ATS-friendly single-column plain-text resume preview that updates from wizard inputs, with one-click actions to copy to clipboard and download as a `.txt` file (no backend calls).
+- Register SEO metadata (title/description/keywords/canonicalPath) for the new route and add the new URL to `sitemap.xml`.
+- Add a new tool card entry in the “Resume & Placement Help” section that navigates to the new page/route, while keeping the existing four resume tool cards unchanged and still opening in their current modal behavior.
 
-**User-visible outcome:** Users can click “Privacy Policy” in the footer to open a fully populated Privacy Policy page at `/privacy-policy`, and the page is properly indexed and shows correct SEO metadata.
+**User-visible outcome:** Users can open a new ATS Resume Generator page from the Resume & Placement Help section, complete a guided wizard to produce an ATS-friendly plain-text resume, then copy it or download it as a `.txt` file.

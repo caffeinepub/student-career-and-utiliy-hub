@@ -5,9 +5,6 @@ import AdPlaceholder from '../monetization/AdPlaceholder';
 
 export default function FooterSection() {
   const currentYear = new Date().getFullYear();
-  const appIdentifier = typeof window !== 'undefined' 
-    ? encodeURIComponent(window.location.hostname) 
-    : 'unknown-app';
 
   return (
     <footer className="bg-card border-t border-border mt-16">
@@ -58,15 +55,7 @@ export default function FooterSection() {
         <div className="mt-12 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2 flex-wrap">
             © {currentYear} Student Hub. Built with{' '}
-            <Heart className="h-4 w-4 text-red-500 fill-red-500" /> using{' '}
-            <a
-              href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              caffeine.ai
-            </a>
+            <Heart className="h-4 w-4 text-red-500 fill-red-500" /> for Indian Students
           </p>
         </div>
       </div>

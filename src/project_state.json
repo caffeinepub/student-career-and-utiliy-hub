@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 23,
+  "projectStateVersion": 29,
   "summary": "Build a modern, mobile-first static website \"Student Hub\" for Indian college/engineering students featuring academic calculators, a deterministic career roadmap builder (200+ paths), resume/placement helpers, daily utility tools, dark mode, ad placeholders—no login or backend—plus behind-the-scenes SEO optimization and SEO-friendly tool-specific routes/pages without changing the existing visual design/layout.",
   "architectural_notes": [
     "No backend; pure HTML/CSS/JavaScript; fully static deployable (GitHub Pages compatible).",
@@ -21,7 +21,7 @@
     "Navbar/site logo is still not visible (logo not rendering/displaying in UI).",
     "Privacy Policy URL/link/page appears to be incorrect or not working (\"Privacy Policy url\")."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-build-a-modern-fully-responsive-mobile-first-single-page-website-named-student-career-utility-hub-targeted-at-indian-engineering-college-students-with-sections-hero-academic-tools-career-roadmap-builder-resume-placement-help-daily-utility-tools-and-footer-the-site-must-not-require-login",
@@ -414,6 +414,38 @@
         "REQ-49"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-embed-the-provided-highperformanceformat-300x250-banner-ad-snippet-into-the-site-s-existing-ad-placeholder-areas-so-the-banner-can-load-on-the-homepage-without-breaking-layout-use-the-snippet-exactly-as-provided-script-atoptions-key-460270fdfaf861f9f9edfd345b4bd21c-format-iframe-height-250-width-300-params-script-script-src-https-www-highperformanceformat-com-460270fdfaf861f9f9edfd345b4bd21c-invoke-js-script",
+      "title": "Embed the provided HighPerformanceFormat 300x250 banner ad snippet into the site’s existing ad placeholder areas so the banner can load on the homepage without breaking layout. Use the snippet exactly as provided: `<script> atOptions = { 'key' : '460270fdfaf861f9f9edfd345b4bd21c', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> <script src=\"https://www.highperformanceformat.com/460270fdfaf861f9f9edfd345b4bd21c/invoke.js\"></script>`",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-ad-placeholder-component-s-so-that-the-placeholder-container-height-accommodates-a-300x250-banner-placement-where-the-new-banner-is-embedded-while-keeping-the-rest-of-the-site-s-styling-consistent-with-the-current-design-system-rounded-card-container-subtle-borders-no-intrusive-new-ui-text",
+      "title": "Update the existing ad placeholder component(s) so that the placeholder container height accommodates a 300x250 banner placement where the new banner is embedded, while keeping the rest of the site’s styling consistent with the current design system (rounded card container, subtle borders, no intrusive new UI text).",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-currently-embedded-highperformanceformat-banner-ad-implementation-key-460270fdfaf861f9f9edfd345b4bd21c-300x250-with-the-user-provided-highperformanceformat-728x90-iframe-banner-snippet-everywhere-the-app-renders-the-embedded-highperformanceformat-ad-use-the-snippet-exactly-as-provided-html-script-atoptions-key-c9eb741a86b8d1ffcb90cdc69594632f-format-iframe-height-90-width-728-params-script-script-src-https-www-highperformanceformat-com-c9eb741a86b8d1ffcb90cdc69594632f-invoke-js-script-ensure-scripts-are-injected-safely-no-duplicate-injection-across-re-renders-and-cleaned-up-on-unmount-similar-to-the-existing-component-behavior",
+      "title": "Replace the currently embedded HighPerformanceFormat banner ad implementation (key `460270fdfaf861f9f9edfd345b4bd21c`, 300x250) with the user-provided HighPerformanceFormat 728x90 iframe banner snippet everywhere the app renders the embedded HighPerformanceFormat ad.\n\nUse the snippet exactly as provided:\n\n```html\n<script>\n  atOptions = {\n    'key' : 'c9eb741a86b8d1ffcb90cdc69594632f',\n    'format' : 'iframe',\n    'height' : 90,\n    'width' : 728,\n    'params' : {}\n  };\n</script>\n<script src=\"https://www.highperformanceformat.com/c9eb741a86b8d1ffcb90cdc69594632f/invoke.js\"></script>\n```\n\nEnsure scripts are injected safely (no duplicate injection across re-renders), and cleaned up on unmount similar to the existing component behavior.",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-ad-placeholder-sizing-styling-so-the-embedded-banner-slot-accommodates-a-728x90-placement-without-breaking-layout-or-overflowing-on-common-viewports-keep-the-existing-design-system-rounded-card-container-subtle-borders-do-not-introduce-new-user-facing-placeholder-text",
+      "title": "Update the ad placeholder sizing/styling so the embedded banner slot accommodates a 728x90 placement without breaking layout or overflowing on common viewports.\n\nKeep the existing design system (rounded card container, subtle borders). Do not introduce new user-facing placeholder text.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -644,6 +676,52 @@
       "summary": "Integrate Google AdSense by adding the provided async adsbygoogle.js script tag (client ca-pub-3211787208566545) so ads can load in the existing ad placeholder containers",
       "reqIds": [
         "AR-14"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-35",
+      "summary": "Replace current embedded HighPerformanceFormat ad snippet with provided 728x90 iframe banner snippet (key c9eb741a86b8d1ffcb90cdc69594632f) in the site’s ad placeholder location(s)",
+      "reqIds": [
+        "AR-14"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-36",
+      "summary": "Add a standalone ATS-friendly Resume Generator tool as its own dedicated page/route, implemented as a step-by-step wizard covering all key resume sections (contact, summary, skills, experience, education, certifications, projects, keyword suggestions) and producing an ATS-friendly one-column output with export/download",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Create a new standalone ATS-friendly Resume Generator tool as its own dedicated route/page in the existing TanStack Router setup, implemented as a step-by-step wizard (not a single form) that covers all key resume sections: Contact details, Professional summary, Skills (hard + soft), Work experience (ATS action verbs + metrics prompts), Education, Certifications, Projects, and Keyword suggestions.",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "On the ATS Resume Generator page, generate an ATS-friendly, single-column resume output preview from the wizard inputs and provide one-click export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-39",
+      "summary": "Integrate the ATS Resume Generator page into the existing SEO and routing system: register the new route in the router, add an entry in the SEO route metadata configuration (title/description/keywords/canonicalPath), and include the new URL in the static sitemap.xml.",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-40",
+      "summary": "Add an entry point to access the new ATS Resume Generator from the existing UI by adding a new tool card in the \"Resume & Placement Help\" section that opens the ATS Resume Generator in a dedicated page/route (not in a modal), while keeping the existing four resume tool cards unchanged.",
+      "reqIds": [
+        "REQ-57"
       ],
       "status": "pending"
     }

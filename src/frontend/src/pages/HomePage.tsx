@@ -27,7 +27,7 @@ export default function HomePage() {
       <StructuredData data={schemas} />
       <main className="scroll-smooth">
         <HeroSection />
-        <AdPlaceholder location="after-hero" />
+        <AdPlaceholder location="after-hero" showBanner={true} />
         <AcademicToolsSection />
         <AdPlaceholder location="between-sections" />
         <CareerRoadmapSection />

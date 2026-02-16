@@ -1,73 +1,68 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-15T19:32:55.090Z",
+  "generatedAt": "2026-02-16T13:51:05.584Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 4,
-    "implemented": 4,
+    "implemented": 0,
     "items": [
       {
-        "id": "REQ-46",
-        "summary": "Add a dedicated Privacy Policy route at \"/privacy-policy\" that renders a standalone Privacy Policy page with clear English content describing data handling (no login, no personal data collection, calculations performed locally in the browser) and any relevant notes about third-party scripts (e.g., Google AdSense).",
-        "status": "implemented",
+        "id": "REQ-54",
+        "summary": "Create a new standalone ATS-friendly Resume Generator tool as its own dedicated route/page in the existing TanStack Router setup, implemented as a step-by-step wizard (not a single form) that covers all key resume sections: Contact details, Professional summary, Skills (hard + soft), Work experience (ATS action verbs + metrics prompts), Education, Certifications, Projects, and Keyword suggestions.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/pages/PrivacyPolicyPage.tsx"
+          "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
+          "frontend/src/components/tools/resume/atsResumeTypes.ts",
+          "frontend/src/components/tools/resume/atsResumeValidation.ts",
+          "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
+          "frontend/src/seo/content/atsResumeGenerator.ts"
         ],
-        "matchedFiles": [
-          "frontend/src/pages/PrivacyPolicyPage.tsx"
-        ]
+        "matchedFiles": []
       },
       {
-        "id": "REQ-47",
-        "summary": "Fix the footer \"Privacy Policy\" area so users can click to open the new \"/privacy-policy\" page (do not remove the existing short privacy summary text; keep it readable and consistent with the current design).",
-        "status": "implemented",
+        "id": "REQ-55",
+        "summary": "On the ATS Resume Generator page, generate an ATS-friendly, single-column resume output preview from the wizard inputs and provide one-click export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/sections/FooterSection.tsx"
+          "frontend/src/components/tools/resume/atsResumeTextGenerator.ts",
+          "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
+          "frontend/src/lib/clipboard.ts"
         ],
-        "matchedFiles": [
-          "frontend/src/components/sections/FooterSection.tsx"
-        ]
+        "matchedFiles": []
       },
       {
-        "id": "REQ-48",
-        "summary": "Register the new \"/privacy-policy\" route in the TanStack Router and ensure it participates in the existing SEO system (dynamic title/meta/canonical) by adding an entry for \"/privacy-policy\" in the SEO route metadata configuration.",
-        "status": "implemented",
+        "id": "REQ-56",
+        "summary": "Integrate the ATS Resume Generator page into the existing SEO and routing system: register the new route in the router, add an entry in the SEO route metadata configuration (title/description/keywords/canonicalPath), and include the new URL in the static sitemap.xml.",
+        "status": "missing",
         "plannedFiles": [
           "frontend/src/routes/Router.tsx",
-          "frontend/src/seo/seoRoutes.ts"
+          "frontend/src/seo/seoRoutes.ts",
+          "frontend/public/sitemap.xml"
         ],
-        "matchedFiles": [
-          "frontend/src/routes/Router.tsx",
-          "frontend/src/seo/seoRoutes.ts"
-        ]
+        "matchedFiles": []
       },
       {
-        "id": "REQ-49",
-        "summary": "Update the static sitemap to include the \"/privacy-policy\" URL so it is discoverable by search engines.",
-        "status": "implemented",
+        "id": "REQ-57",
+        "summary": "Add an entry point to access the new ATS Resume Generator from the existing UI by adding a new tool card in the \"Resume & Placement Help\" section that opens the ATS Resume Generator in a dedicated page/route (not in a modal), while keeping the existing four resume tool cards unchanged.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/public/sitemap.xml"
+          "frontend/src/components/sections/ResumePlacementSection.tsx"
         ],
-        "matchedFiles": [
-          "frontend/public/sitemap.xml"
-        ]
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/sitemap.xml",
     "frontend/src/components/sections/FooterSection.tsx",
-    "frontend/src/pages/PrivacyPolicyPage.tsx",
-    "frontend/src/routes/Router.tsx",
-    "frontend/src/seo/seoRoutes.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
