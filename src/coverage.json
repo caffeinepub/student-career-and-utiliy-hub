@@ -1,68 +1,82 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-16T13:51:05.584Z",
+  "generatedAt": "2026-02-16T14:53:38.369Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 4,
-    "implemented": 0,
+    "implemented": 4,
     "items": [
       {
-        "id": "REQ-54",
-        "summary": "Create a new standalone ATS-friendly Resume Generator tool as its own dedicated route/page in the existing TanStack Router setup, implemented as a step-by-step wizard (not a single form) that covers all key resume sections: Contact details, Professional summary, Skills (hard + soft), Work experience (ATS action verbs + metrics prompts), Education, Certifications, Projects, and Keyword suggestions.",
-        "status": "missing",
+        "id": "REQ-68",
+        "summary": "Improve the deterministic career roadmap content so the generated roadmaps are more realistic, career-relevant, and free of irrelevant or misleading technology references.\n\nSpecifically update the roadmap template data used by `getRoadmapTemplate(...)` so that:\n- Roadmaps do not mention unsupported stack/deployment items (e.g., AWS/Vercel, MongoDB, Node/Express) as required steps unless they are clearly optional and career-appropriate.\n- Learning phases, topics, and resources are tailored to the selected career (or at least to its category) and remain consistent with Indian student/fresher context.\n- The roadmap output remains fully deterministic (no external API/AI calls) and continues to render via the existing Roadmap UI components without breaking layout.",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
-          "frontend/src/components/tools/resume/atsResumeTypes.ts",
-          "frontend/src/components/tools/resume/atsResumeValidation.ts",
+          "frontend/src/components/roadmap/roadmapTemplates.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/roadmap/roadmapTemplates.ts"
+        ]
+      },
+      {
+        "id": "REQ-69",
+        "summary": "Add a new ATS-friendly Resume Generator tool as a dedicated tool page/route.\n\nThe tool must:\n- Be a step-by-step wizard (not a single long form) covering key resume sections: Contact, Summary, Skills (hard + soft), Experience (with action-verb and metrics prompts), Education, Certifications, Projects, and Keywords.\n- Generate a clean, ATS-friendly, single-column resume output preview from the collected inputs.\n- Provide export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.\n- Use clear English for all labels, helper text, and outputs.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/tools/resume/AtsResumeGenerator.tsx",
           "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
-          "frontend/src/seo/content/atsResumeGenerator.ts"
+          "frontend/src/seo/content/atsResume.ts"
         ],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/components/tools/resume/AtsResumeGenerator.tsx",
+          "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
+          "frontend/src/seo/content/atsResume.ts"
+        ]
       },
       {
-        "id": "REQ-55",
-        "summary": "On the ATS Resume Generator page, generate an ATS-friendly, single-column resume output preview from the wizard inputs and provide one-click export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.",
-        "status": "missing",
+        "id": "REQ-70",
+        "summary": "Integrate the new ATS Resume Generator into the existing navigation entry points for resume tools.\n\nAdd a new tool card in the existing \"Resume & Placement Help\" section that navigates to the new ATS Resume Generator dedicated page/route (do not open it in the existing modal), while keeping the existing four resume tool cards unchanged and still modal-based.",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/tools/resume/atsResumeTextGenerator.ts",
-          "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
-          "frontend/src/lib/clipboard.ts"
+          "frontend/src/components/sections/ResumePlacementSection.tsx"
         ],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/components/sections/ResumePlacementSection.tsx"
+        ]
       },
       {
-        "id": "REQ-56",
-        "summary": "Integrate the ATS Resume Generator page into the existing SEO and routing system: register the new route in the router, add an entry in the SEO route metadata configuration (title/description/keywords/canonicalPath), and include the new URL in the static sitemap.xml.",
-        "status": "missing",
+        "id": "REQ-71",
+        "summary": "Add SEO + routing configuration for the ATS Resume Generator page so it participates in the existing SEO system and technical SEO assets.\n\nUpdate:\n- TanStack Router to register the new page route (lazy-loaded like other tool pages).\n- `frontend/src/seo/seoRoutes.ts` to include metadata (title, description, keywords, canonicalPath) for the new route.\n- `frontend/public/sitemap.xml` to include the new URL so it is discoverable by search engines.\n\nEnsure user-facing SEO strings are in clear English.",
+        "status": "implemented",
         "plannedFiles": [
           "frontend/src/routes/Router.tsx",
           "frontend/src/seo/seoRoutes.ts",
           "frontend/public/sitemap.xml"
         ],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-57",
-        "summary": "Add an entry point to access the new ATS Resume Generator from the existing UI by adding a new tool card in the \"Resume & Placement Help\" section that opens the ATS Resume Generator in a dedicated page/route (not in a modal), while keeping the existing four resume tool cards unchanged.",
-        "status": "missing",
-        "plannedFiles": [
-          "frontend/src/components/sections/ResumePlacementSection.tsx"
-        ],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/routes/Router.tsx",
+          "frontend/src/seo/seoRoutes.ts",
+          "frontend/public/sitemap.xml"
+        ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/sections/FooterSection.tsx",
+    "frontend/public/sitemap.xml",
+    "frontend/src/components/roadmap/roadmapTemplates.ts",
+    "frontend/src/components/sections/ResumePlacementSection.tsx",
+    "frontend/src/components/tools/resume/AtsResumeGenerator.tsx",
+    "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
+    "frontend/src/routes/Router.tsx",
+    "frontend/src/seo/content/atsResume.ts",
+    "frontend/src/seo/seoRoutes.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

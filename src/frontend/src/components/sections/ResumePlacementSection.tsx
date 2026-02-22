@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FileText, Mail, CheckSquare, Linkedin } from 'lucide-react';
+import { useNavigate } from '@tanstack/react-router';
+import { FileText, Mail, CheckSquare, Linkedin, FileCheck } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ResumeBulletGenerator from '../tools/resume/ResumeBulletGenerator';
@@ -10,6 +11,7 @@ import LinkedInProfileChecklist from '../tools/resume/LinkedInProfileChecklist';
 type ToolType = 'resume' | 'email' | 'interview' | 'linkedin' | null;
 
 export default function ResumePlacementSection() {
+  const navigate = useNavigate();
   const [openTool, setOpenTool] = useState<ToolType>(null);
 
   const tools = [
@@ -71,7 +73,22 @@ export default function ResumePlacementSection() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {/* ATS Resume Generator - Full Page Tool */}
+          <Card
+            className="cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+            onClick={() => navigate({ to: '/ats-resume-generator' })}
+          >
+            <CardHeader>
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <FileCheck className="h-6 w-6 text-primary" />
+              </div>
+              <CardTitle className="text-lg">ATS Resume Generator</CardTitle>
+              <CardDescription>Build ATS-friendly resumes that pass screening</CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Existing Modal-Based Tools */}
           {tools.map((tool) => {
             const Icon = tool.icon;
             return (

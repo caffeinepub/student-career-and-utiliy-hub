@@ -1,4 +1,81 @@
 {
   "kind": "feature_evidence_report",
-  "features": []
+  "features": [
+    {
+      "featureId": "feature-improve-the-deterministic-career-roadmap-content-so-the-generated-roadmaps-are-more-realistic-career-relevant-and-free-of-irrelevant-or-misleading-technology-references-specifically-update-the-roadmap-template-data-used-by-getroadmaptemplate-so-that-roadmaps-do-not-mention-unsupported-stack-deployment-items-e-g-aws-vercel-mongodb-node-express-as-required-steps-unless-they-are-clearly-optional-and-career-appropriate-learning-phases-topics-and-resources-are-tailored-to-the-selected-career-or-at-least-to-its-category-and-remain-consistent-with-indian-student-fresher-context-the-roadmap-output-remains-fully-deterministic-no-external-api-ai-calls-and-continues-to-render-via-the-existing-roadmap-ui-components-without-breaking-layout",
+      "featureTitle": "Improve the deterministic career roadmap content so the generated roadmaps are more realistic, career-relevant, and free of irrelevant or misleading technology references.\n\nSpecifically update the roadmap template data used by `getRoadmapTemplate(...)` so that:\n- Roadmaps do not mention unsupported stack/deployment items (e.g., AWS/Vercel, MongoDB, Node/Express) as required steps unless they are clearly optional and career-appropriate.\n- Learning phases, topics, and resources are tailored to the selected career (or at least to its category) and remain consistent with Indian student/fresher context.\n- The roadmap output remains fully deterministic (no external API/AI calls) and continues to render via the existing Roadmap UI components without breaking layout.",
+      "files": [
+        "frontend/src/components/roadmap/roadmapTemplates.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-68"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-new-ats-friendly-resume-generator-tool-as-a-dedicated-tool-page-route-the-tool-must-be-a-step-by-step-wizard-not-a-single-long-form-covering-key-resume-sections-contact-summary-skills-hard-soft-experience-with-action-verb-and-metrics-prompts-education-certifications-projects-and-keywords-generate-a-clean-ats-friendly-single-column-resume-output-preview-from-the-collected-inputs-provide-export-options-1-copy-the-full-resume-as-plain-text-to-clipboard-and-2-download-the-resume-as-a-txt-file-use-clear-english-for-all-labels-helper-text-and-outputs",
+      "featureTitle": "Add a new ATS-friendly Resume Generator tool as a dedicated tool page/route.\n\nThe tool must:\n- Be a step-by-step wizard (not a single long form) covering key resume sections: Contact, Summary, Skills (hard + soft), Experience (with action-verb and metrics prompts), Education, Certifications, Projects, and Keywords.\n- Generate a clean, ATS-friendly, single-column resume output preview from the collected inputs.\n- Provide export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.\n- Use clear English for all labels, helper text, and outputs.",
+      "files": [
+        "frontend/src/components/tools/resume/AtsResumeGenerator.tsx",
+        "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
+        "frontend/src/seo/content/atsResume.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-69"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-integrate-the-new-ats-resume-generator-into-the-existing-navigation-entry-points-for-resume-tools-add-a-new-tool-card-in-the-existing-resume-placement-help-section-that-navigates-to-the-new-ats-resume-generator-dedicated-page-route-do-not-open-it-in-the-existing-modal-while-keeping-the-existing-four-resume-tool-cards-unchanged-and-still-modal-based",
+      "featureTitle": "Integrate the new ATS Resume Generator into the existing navigation entry points for resume tools.\n\nAdd a new tool card in the existing \"Resume & Placement Help\" section that navigates to the new ATS Resume Generator dedicated page/route (do not open it in the existing modal), while keeping the existing four resume tool cards unchanged and still modal-based.",
+      "files": [
+        "frontend/src/components/sections/ResumePlacementSection.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-70"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-seo-routing-configuration-for-the-ats-resume-generator-page-so-it-participates-in-the-existing-seo-system-and-technical-seo-assets-update-tanstack-router-to-register-the-new-page-route-lazy-loaded-like-other-tool-pages-frontend-src-seo-seoroutes-ts-to-include-metadata-title-description-keywords-canonicalpath-for-the-new-route-frontend-public-sitemap-xml-to-include-the-new-url-so-it-is-discoverable-by-search-engines-ensure-user-facing-seo-strings-are-in-clear-english",
+      "featureTitle": "Add SEO + routing configuration for the ATS Resume Generator page so it participates in the existing SEO system and technical SEO assets.\n\nUpdate:\n- TanStack Router to register the new page route (lazy-loaded like other tool pages).\n- `frontend/src/seo/seoRoutes.ts` to include metadata (title, description, keywords, canonicalPath) for the new route.\n- `frontend/public/sitemap.xml` to include the new URL so it is discoverable by search engines.\n\nEnsure user-facing SEO strings are in clear English.",
+      "files": [
+        "frontend/public/sitemap.xml",
+        "frontend/src/routes/Router.tsx",
+        "frontend/src/seo/seoRoutes.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-71"
+      ],
+      "confidence": "high"
+    }
+  ]
 }

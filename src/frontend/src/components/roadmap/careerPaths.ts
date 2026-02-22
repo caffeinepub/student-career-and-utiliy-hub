@@ -2,9 +2,24 @@ export interface CareerPath {
   value: string;
   label: string;
   category: string;
+  description?: string;
+  salaryRange?: string;
+  keywords?: string[];
 }
 
-export const careerPaths: CareerPath[] = [
+// Category metadata for filtering
+export const careerCategories = [
+  'Technology & Software',
+  'Data Science & AI',
+  'Cybersecurity',
+  'Design & Creative',
+  'Product & Management',
+  'Finance & Business',
+  'Government & Civil Services'
+];
+
+// Base career paths data
+const baseCareerPaths: Omit<CareerPath, 'keywords' | 'description' | 'salaryRange'>[] = [
   // Technology & Software Development (50 paths)
   { value: 'Frontend Developer', label: 'Frontend Developer', category: 'Technology & Software' },
   { value: 'Backend Developer', label: 'Backend Developer', category: 'Technology & Software' },
@@ -216,13 +231,58 @@ export const careerPaths: CareerPath[] = [
   { value: 'SSC CHSL', label: 'SSC CHSL', category: 'Government & Civil Services' },
   { value: 'Bank PO', label: 'Bank PO', category: 'Government & Civil Services' },
   { value: 'Bank Clerk', label: 'Bank Clerk', category: 'Government & Civil Services' },
-  { value: 'RBI Grade B Officer', label: 'RBI Grade B Officer', category: 'Government & Civil Services' },
+  { value: 'RBI Grade B', label: 'RBI Grade B', category: 'Government & Civil Services' },
+  { value: 'NABARD Officer', label: 'NABARD Officer', category: 'Government & Civil Services' },
   { value: 'Railway Jobs', label: 'Railway Jobs', category: 'Government & Civil Services' },
-  { value: 'Defense Services', label: 'Defense Services', category: 'Government & Civil Services' },
+  { value: 'Defence Services', label: 'Defence Services', category: 'Government & Civil Services' },
+  { value: 'State PSC', label: 'State PSC', category: 'Government & Civil Services' },
+  { value: 'Teaching Jobs', label: 'Teaching Jobs', category: 'Government & Civil Services' },
   { value: 'Police Services', label: 'Police Services', category: 'Government & Civil Services' },
-  { value: 'Teaching (Government)', label: 'Teaching (Government)', category: 'Government & Civil Services' },
-  { value: 'PSU Jobs', label: 'PSU Jobs', category: 'Government & Civil Services' },
-  { value: 'State Government Jobs', label: 'State Government Jobs', category: 'Government & Civil Services' },
 ];
 
-export const careerCategories = Array.from(new Set(careerPaths.map(p => p.category))).sort();
+// Category-based keyword defaults
+const categoryKeywords: Record<string, string[]> = {
+  'Technology & Software': ['programming', 'coding', 'software', 'development', 'web', 'app', 'javascript', 'python', 'java', 'react', 'node', 'database', 'api', 'cloud', 'devops', 'git'],
+  'Data Science & AI': ['data', 'analytics', 'machine learning', 'ai', 'python', 'sql', 'statistics', 'ml', 'deep learning', 'nlp', 'tensorflow', 'pandas', 'numpy', 'visualization', 'tableau'],
+  'Cybersecurity': ['security', 'hacking', 'ethical hacking', 'penetration testing', 'network', 'linux', 'cryptography', 'firewall', 'vulnerability', 'malware', 'forensics'],
+  'Design & Creative': ['design', 'ui', 'ux', 'figma', 'adobe', 'photoshop', 'illustrator', 'creative', 'graphics', 'visual', 'branding', 'typography', 'animation'],
+  'Product & Management': ['product', 'management', 'strategy', 'agile', 'scrum', 'marketing', 'business', 'analytics', 'growth', 'pm', 'consulting'],
+  'Finance & Business': ['finance', 'accounting', 'investment', 'banking', 'excel', 'financial analysis', 'cfa', 'mba', 'business', 'economics', 'trading'],
+  'Government & Civil Services': ['upsc', 'ssc', 'banking', 'railway', 'government', 'civil services', 'ias', 'ips', 'exam', 'aptitude', 'gk', 'current affairs']
+};
+
+// Salary ranges by category
+const categorySalaryRanges: Record<string, string> = {
+  'Technology & Software': '₹6-15 LPA',
+  'Data Science & AI': '₹7-18 LPA',
+  'Cybersecurity': '₹6-16 LPA',
+  'Design & Creative': '₹4-12 LPA',
+  'Product & Management': '₹8-20 LPA',
+  'Finance & Business': '₹6-15 LPA',
+  'Government & Civil Services': '₹4-10 LPA'
+};
+
+// Enrich career paths with keywords, descriptions, and salary ranges
+export const careerPaths: CareerPath[] = baseCareerPaths.map(path => {
+  const categoryKeys = categoryKeywords[path.category] || [];
+  const labelWords = path.label.toLowerCase().split(/[\s/]+/);
+  
+  // Combine category keywords with label-specific keywords
+  const keywords = [...new Set([...categoryKeys, ...labelWords])];
+  
+  return {
+    ...path,
+    keywords,
+    salaryRange: categorySalaryRanges[path.category] || '₹5-12 LPA',
+    description: `Build complete ${path.label.toLowerCase()} skills`
+  };
+});
+
+// Get category counts
+export function getCategoryCounts(): Record<string, number> {
+  const counts: Record<string, number> = {};
+  careerPaths.forEach(path => {
+    counts[path.category] = (counts[path.category] || 0) + 1;
+  });
+  return counts;
+}

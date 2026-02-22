@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, Target, Wrench, Briefcase, Calendar, IndianRupee } from 'lucide-react';
+import { Briefcase, Clock, IndianRupee, Target, Users, Lightbulb, BookOpen, Building2 } from 'lucide-react';
 import type { RoadmapData } from './roadmapTemplates';
 
 interface RoadmapTimelineProps {
@@ -10,31 +10,123 @@ interface RoadmapTimelineProps {
 export default function RoadmapTimeline({ data }: RoadmapTimelineProps) {
   return (
     <div className="space-y-8 animate-fade-in">
-      <div className="text-center">
-        <Badge className="mb-4" variant="secondary">
-          Your Personalized Roadmap
-        </Badge>
-        <h3 className="font-heading font-bold text-2xl md:text-3xl text-foreground">
-          {data.career} Career Path
-        </h3>
-        <p className="text-muted-foreground mt-2">
-          Current Year: {data.year} | Study Hours: {data.studyHours}hrs/week
-        </p>
+      {/* Career Summary Block */}
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
+        <CardHeader>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-2">
+                {data.career}
+              </h3>
+              <p className="text-lg text-muted-foreground">
+                {data.careerDescription}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Target className="h-4 w-4" />
+                  <span>Level</span>
+                </div>
+                <p className="font-semibold text-foreground">{data.level}</p>
+              </div>
+              
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <IndianRupee className="h-4 w-4" />
+                  <span>Average Salary</span>
+                </div>
+                <p className="font-semibold text-primary">{data.averageSalary}</p>
+              </div>
+              
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Clock className="h-4 w-4" />
+                  <span>Timeline</span>
+                </div>
+                <p className="font-semibold text-foreground">{data.timeline}</p>
+              </div>
+              
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Briefcase className="h-4 w-4" />
+                  <span>Category</span>
+                </div>
+                <p className="font-semibold text-foreground">{data.category}</p>
+              </div>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
+      {/* Your Learning Path */}
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="font-heading font-bold text-2xl md:text-3xl text-foreground mb-2">
+            Your Learning Path
+          </h3>
+          <p className="text-muted-foreground">
+            Follow this structured roadmap to achieve your career goals
+          </p>
+        </div>
+
+        {data.learningPhases.map((phase) => (
+          <Card key={phase.number} className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-2 h-full bg-primary" />
+            <CardHeader>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">{phase.number}</span>
+                </div>
+                <div className="flex-1">
+                  <CardTitle className="text-xl mb-1">{phase.title}</CardTitle>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Clock className="h-4 w-4" />
+                    <span>Duration: {phase.duration}</span>
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4 pl-20">
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground mb-2">Topics to Learn:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {phase.topics.map((topic, index) => (
+                    <Badge key={index} variant="secondary">
+                      {topic}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground mb-2">Resources:</h4>
+                <ul className="space-y-1">
+                  {phase.resources.map((resource, index) => (
+                    <li key={index} className="text-sm text-foreground">
+                      • {resource}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
-      {/* Required Skills */}
+      {/* Skills You'll Master */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-5 w-5 text-primary" />
-            Required Skills
+            Skills You'll Master
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {data.requiredSkills.map((skill, index) => (
+            {data.skillsMastered.map((skill, index) => (
               <Badge key={index} variant="outline" className="text-sm">
-                <CheckCircle2 className="h-3 w-3 mr-1" />
                 {skill}
               </Badge>
             ))}
@@ -42,125 +134,83 @@ export default function RoadmapTimeline({ data }: RoadmapTimelineProps) {
         </CardContent>
       </Card>
 
-      {/* Tools to Learn */}
+      {/* Top Companies Hiring */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Wrench className="h-5 w-5 text-primary" />
-            Tools to Learn
+            <Building2 className="h-5 w-5 text-primary" />
+            Top Companies Hiring
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {data.toolsToLearn.map((tool, index) => (
+            {data.topCompanies.map((company, index) => (
               <Badge key={index} variant="secondary" className="text-sm">
-                {tool}
+                {company}
               </Badge>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      {/* Recommended Projects */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-primary" />
-            Recommended Projects
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {data.recommendedProjects.map((project, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>{project}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-
-      {/* Internship Strategy */}
+      {/* Career Opportunities */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Briefcase className="h-5 w-5 text-primary" />
-            Internship Strategy
+            Career Opportunities
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
-            {data.internshipStrategy.map((strategy, index) => (
+            {data.careerOpportunities.map((opportunity, index) => (
               <li key={index} className="flex items-start gap-2">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>{strategy}</span>
+                <span className="text-primary mt-1">•</span>
+                <span>{opportunity}</span>
               </li>
             ))}
           </ul>
         </CardContent>
       </Card>
 
-      {/* Monthly Plan */}
-      <Card>
+      {/* Personalized Tips Based on Your Profile */}
+      <Card className="bg-accent/5 border-accent/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-primary" />
-            3-6-12 Month Plan
+            <Lightbulb className="h-5 w-5 text-primary" />
+            Personalized Tips Based on Your Profile
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4">
           <div>
-            <h4 className="font-semibold text-lg mb-3 text-primary">3 Month Goals</h4>
-            <ul className="space-y-2">
-              {data.monthlyPlan.threeMonth.map((goal, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span>{goal}</span>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <BookOpen className="h-4 w-4 text-primary" />
+              Your Study Plan
+            </h4>
+            <p className="text-muted-foreground">
+              {data.personalizedTips.studyPlan}
+            </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-3 text-primary">6 Month Goals</h4>
-            <ul className="space-y-2">
-              {data.monthlyPlan.sixMonth.map((goal, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span>{goal}</span>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <Target className="h-4 w-4 text-primary" />
+              Build Your Portfolio
+            </h4>
+            <p className="text-muted-foreground">
+              {data.personalizedTips.portfolio}
+            </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-3 text-primary">12 Month Goals</h4>
-            <ul className="space-y-2">
-              {data.monthlyPlan.twelveMonth.map((goal, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span>{goal}</span>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <Users className="h-4 w-4 text-primary" />
+              Networking & Community
+            </h4>
+            <p className="text-muted-foreground">
+              {data.personalizedTips.networking}
+            </p>
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Salary Range */}
-      <Card className="bg-primary/5 border-primary/20">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IndianRupee className="h-5 w-5 text-primary" />
-            Expected Salary Range (India)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg font-semibold text-primary">{data.salaryRange}</p>
-          <p className="text-sm text-muted-foreground mt-2">
-            *Estimates based on industry averages. Actual salaries may vary based on company, location, and skills.
-          </p>
         </CardContent>
       </Card>
     </div>

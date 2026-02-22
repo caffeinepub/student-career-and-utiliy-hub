@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 29,
+  "projectStateVersion": 33,
   "summary": "Build a modern, mobile-first static website \"Student Hub\" for Indian college/engineering students featuring academic calculators, a deterministic career roadmap builder (200+ paths), resume/placement helpers, daily utility tools, dark mode, ad placeholders—no login or backend—plus behind-the-scenes SEO optimization and SEO-friendly tool-specific routes/pages without changing the existing visual design/layout.",
   "architectural_notes": [
     "No backend; pure HTML/CSS/JavaScript; fully static deployable (GitHub Pages compatible).",
@@ -446,6 +446,118 @@
         "REQ-53"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-career-roadmap-builder-form-ui-homepage-section-and-career-roadmap-generator-tool-page-to-match-the-provided-reference-layout-and-copy-show-a-header-area-with-english-text-equivalent-to-ai-powered-career-planning-a-primary-title-build-your-career-roadmap-and-a-short-subtitle-indicating-200-career-paths-and-personalized-recommendations-keep-the-existing-page-structure-and-design-system-cards-spacing-tailwind-theme-consistent-with-the-current-app",
+      "title": "Update the Career Roadmap Builder form UI (homepage section and \"/career-roadmap-generator\" tool page) to match the provided reference layout and copy: show a header area with English text equivalent to “AI-Powered Career Planning”, a primary title “Build Your Career Roadmap”, and a short subtitle indicating 200+ career paths and personalized recommendations; keep the existing page structure and design system (cards, spacing, Tailwind theme) consistent with the current app.",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-career-path-selection-ux-to-support-the-reference-behavior-add-a-visible-category-filter-control-with-an-all-categories-option-that-displays-the-number-of-careers-in-the-currently-selected-category-e-g-all-categories-50-careers-and-show-a-results-summary-line-like-showing-x-of-y-available-career-paths-based-on-the-active-search-and-category-filter",
+      "title": "Enhance the career-path selection UX to support the reference behavior: add a visible category filter control with an “All Categories” option that displays the number of careers in the currently selected category (e.g., “All Categories (50 careers)”), and show a results summary line like “Showing X of Y available career paths” based on the active search and category filter.",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-career-path-search-so-users-can-search-by-career-name-category-and-skills-keywords-in-addition-to-the-current-label-category-search-update-the-career-path-data-model-in-the-existing-career-paths-list-to-include-skills-keyword-tags-per-career-so-skill-based-search-works-deterministically-without-external-services",
+      "title": "Extend career-path search so users can search by career name, category, and skills keywords (in addition to the current label/category search). Update the career path data model (in the existing career paths list) to include skills/keyword tags per career so skill-based search works deterministically without external services.",
+      "reqIds": [
+        "REQ-60"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-career-path-listing-ui-shown-in-the-selector-results-to-be-richer-matching-the-reference-each-listed-career-shows-the-career-name-its-category-and-an-india-salary-range-preview-e-g-6-15-lpa-in-the-list-item-display-this-requires-adding-per-career-metadata-category-already-exists-add-salary-range-and-a-short-description-tagline-where-appropriate-to-the-existing-career-paths-dataset",
+      "title": "Update the career-path listing UI shown in the selector results to be richer, matching the reference: each listed career shows the career name, its category, and an India salary range preview (e.g., “₹6-15 LPA”) in the list item display. This requires adding per-career metadata (category already exists; add salary range and a short description/tagline where appropriate) to the existing career paths dataset.",
+      "reqIds": [
+        "REQ-61"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-validation-and-input-ux-in-the-roadmap-builder-form-to-match-the-reference-behavior-allow-the-current-skills-field-to-be-optional-as-in-leave-empty-if-you-re-a-beginner-while-still-requiring-career-selection-current-year-and-weekly-study-hours",
+      "title": "Adjust validation and input UX in the roadmap builder form to match the reference behavior: allow the “Current Skills” field to be optional (as in “Leave empty if you're a beginner”), while still requiring career selection, current year, and weekly study hours.",
+      "reqIds": [
+        "REQ-62"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-generated-roadmap-output-ui-homepage-section-and-career-roadmap-generator-page-to-match-the-reference-content-structure-include-a-top-summary-area-with-the-selected-career-name-a-short-career-description-and-labeled-fields-for-skill-level-e-g-beginner-intermediate-advanced-average-salary-estimated-timeline-e-g-8-12-months-and-category-keep-content-deterministic-based-on-the-selected-career-and-study-hours",
+      "title": "Redesign the generated roadmap output UI (homepage section and \"/career-roadmap-generator\" page) to match the reference content structure: include a top summary area with the selected career name, a short career description, and labeled fields for skill level (e.g., Beginner/Intermediate/Advanced), average salary, estimated timeline (e.g., “8–12 months”), and category. Keep content deterministic based on the selected career and study hours.",
+      "reqIds": [
+        "REQ-63"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-extend-the-current-roadmap-sections-with-a-phased-your-learning-path-timeline-matching-the-reference-show-numbered-phases-e-g-1-4-each-with-a-phase-title-a-duration-in-months-a-topics-to-learn-list-and-a-resources-list-resource-names-only-english-roadmap-phases-must-be-deterministic-and-based-on-the-selected-career-or-its-category-template",
+      "title": "Replace/extend the current roadmap sections with a phased “Your Learning Path” timeline matching the reference: show numbered phases (e.g., 1–4), each with a phase title, a duration (in months), a “Topics to Learn” list, and a “Resources” list (resource names only, English). Roadmap phases must be deterministic and based on the selected career (or its category template).",
+      "reqIds": [
+        "REQ-64"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-additional-deterministic-roadmap-sections-shown-after-the-learning-phases-to-match-the-reference-1-skills-you-ll-master-tag-badge-list-2-top-companies-hiring-list-3-career-opportunities-list-of-roles-and-4-personalized-tips-based-on-your-profile-with-at-least-a-study-plan-paragraph-that-references-the-user-s-weekly-study-hours-and-an-actionable-portfolio-networking-tips-block-in-english",
+      "title": "Add additional deterministic roadmap sections shown after the learning phases to match the reference: (1) “Skills You'll Master” (tag/badge list), (2) “Top Companies Hiring” (list), (3) “Career Opportunities” (list of roles), and (4) “Personalized Tips Based on Your Profile” with at least: a study-plan paragraph that references the user’s weekly study hours and an actionable portfolio/networking tips block in English.",
+      "reqIds": [
+        "REQ-65"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-roadmap-data-structures-and-template-generation-so-the-new-output-fields-are-supported-per-career-or-category-template-metadata-must-include-at-minimum-description-level-timeline-salary-range-phases-with-durations-topics-resources-skills-mastered-top-companies-career-opportunities-and-personalized-tips-logic-keyed-off-weekly-study-hours-and-user-year",
+      "title": "Update the roadmap data structures and template generation so the new output fields are supported: per-career (or category-template) metadata must include at minimum description, level, timeline, salary range, phases (with durations/topics/resources), skills mastered, top companies, career opportunities, and personalized tips logic keyed off weekly study hours and user year.",
+      "reqIds": [
+        "REQ-66"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-new-user-facing-strings-introduced-by-these-roadmap-changes-are-written-in-clear-english-and-do-not-introduce-any-login-authentication-prompts-anywhere-in-the-experience",
+      "title": "Ensure all new user-facing strings introduced by these roadmap changes are written in clear English and do not introduce any login/authentication prompts anywhere in the experience.",
+      "reqIds": [
+        "REQ-67"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-the-deterministic-career-roadmap-content-so-the-generated-roadmaps-are-more-realistic-career-relevant-and-free-of-irrelevant-or-misleading-technology-references-specifically-update-the-roadmap-template-data-used-by-getroadmaptemplate-so-that-roadmaps-do-not-mention-unsupported-stack-deployment-items-e-g-aws-vercel-mongodb-node-express-as-required-steps-unless-they-are-clearly-optional-and-career-appropriate-learning-phases-topics-and-resources-are-tailored-to-the-selected-career-or-at-least-to-its-category-and-remain-consistent-with-indian-student-fresher-context-the-roadmap-output-remains-fully-deterministic-no-external-api-ai-calls-and-continues-to-render-via-the-existing-roadmap-ui-components-without-breaking-layout",
+      "title": "Improve the deterministic career roadmap content so the generated roadmaps are more realistic, career-relevant, and free of irrelevant or misleading technology references.\n\nSpecifically update the roadmap template data used by `getRoadmapTemplate(...)` so that:\n- Roadmaps do not mention unsupported stack/deployment items (e.g., AWS/Vercel, MongoDB, Node/Express) as required steps unless they are clearly optional and career-appropriate.\n- Learning phases, topics, and resources are tailored to the selected career (or at least to its category) and remain consistent with Indian student/fresher context.\n- The roadmap output remains fully deterministic (no external API/AI calls) and continues to render via the existing Roadmap UI components without breaking layout.",
+      "reqIds": [
+        "REQ-68"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-ats-friendly-resume-generator-tool-as-a-dedicated-tool-page-route-the-tool-must-be-a-step-by-step-wizard-not-a-single-long-form-covering-key-resume-sections-contact-summary-skills-hard-soft-experience-with-action-verb-and-metrics-prompts-education-certifications-projects-and-keywords-generate-a-clean-ats-friendly-single-column-resume-output-preview-from-the-collected-inputs-provide-export-options-1-copy-the-full-resume-as-plain-text-to-clipboard-and-2-download-the-resume-as-a-txt-file-use-clear-english-for-all-labels-helper-text-and-outputs",
+      "title": "Add a new ATS-friendly Resume Generator tool as a dedicated tool page/route.\n\nThe tool must:\n- Be a step-by-step wizard (not a single long form) covering key resume sections: Contact, Summary, Skills (hard + soft), Experience (with action-verb and metrics prompts), Education, Certifications, Projects, and Keywords.\n- Generate a clean, ATS-friendly, single-column resume output preview from the collected inputs.\n- Provide export options: (1) copy the full resume as plain text to clipboard and (2) download the resume as a .txt file.\n- Use clear English for all labels, helper text, and outputs.",
+      "reqIds": [
+        "REQ-69"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-the-new-ats-resume-generator-into-the-existing-navigation-entry-points-for-resume-tools-add-a-new-tool-card-in-the-existing-resume-placement-help-section-that-navigates-to-the-new-ats-resume-generator-dedicated-page-route-do-not-open-it-in-the-existing-modal-while-keeping-the-existing-four-resume-tool-cards-unchanged-and-still-modal-based",
+      "title": "Integrate the new ATS Resume Generator into the existing navigation entry points for resume tools.\n\nAdd a new tool card in the existing \"Resume & Placement Help\" section that navigates to the new ATS Resume Generator dedicated page/route (do not open it in the existing modal), while keeping the existing four resume tool cards unchanged and still modal-based.",
+      "reqIds": [
+        "REQ-70"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-seo-routing-configuration-for-the-ats-resume-generator-page-so-it-participates-in-the-existing-seo-system-and-technical-seo-assets-update-tanstack-router-to-register-the-new-page-route-lazy-loaded-like-other-tool-pages-frontend-src-seo-seoroutes-ts-to-include-metadata-title-description-keywords-canonicalpath-for-the-new-route-frontend-public-sitemap-xml-to-include-the-new-url-so-it-is-discoverable-by-search-engines-ensure-user-facing-seo-strings-are-in-clear-english",
+      "title": "Add SEO + routing configuration for the ATS Resume Generator page so it participates in the existing SEO system and technical SEO assets.\n\nUpdate:\n- TanStack Router to register the new page route (lazy-loaded like other tool pages).\n- `frontend/src/seo/seoRoutes.ts` to include metadata (title, description, keywords, canonicalPath) for the new route.\n- `frontend/public/sitemap.xml` to include the new URL so it is discoverable by search engines.\n\nEnsure user-facing SEO strings are in clear English.",
+      "reqIds": [
+        "REQ-71"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -722,6 +834,16 @@
       "summary": "Add an entry point to access the new ATS Resume Generator from the existing UI by adding a new tool card in the \"Resume & Placement Help\" section that opens the ATS Resume Generator in a dedicated page/route (not in a modal), while keeping the existing four resume tool cards unchanged.",
       "reqIds": [
         "REQ-57"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-41",
+      "summary": "Update Career Roadmap Builder UI/UX to match the provided reference: add search by career/skills/category, category filter/listing with counts, richer roadmap results (level, avg salary, timeline, category, phased learning path with durations/topics/resources), plus sections for Skills You'll Master, Top Companies Hiring, Career Opportunities, and Personalized Tips/Study Plan based on weekly hours",
+      "reqIds": [
+        "AR-7",
+        "AR-8",
+        "AR-17"
       ],
       "status": "pending"
     }

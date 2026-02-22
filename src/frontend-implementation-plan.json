@@ -1,113 +1,93 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Standalone ATS-friendly Resume Generator wizard (new tool route)",
+  "title": "Deterministic roadmap improvements + ATS-friendly resume generator tool",
   "requirements": [
     {
-      "id": "REQ-54",
-      "summary": "Add a dedicated ATS Resume Generator route/page that implements a mobile-friendly step-by-step wizard covering all required resume sections with basic validation and no login.",
+      "id": "REQ-68",
+      "summary": "Improve deterministic career roadmap template data to be career-appropriate, realistic for Indian freshers, and free of irrelevant mandatory tech references.",
       "acceptanceCriteria": [
-        "A new dedicated page/route exists for the ATS Resume Generator tool and renders without runtime errors.",
-        "The tool UI is a step-by-step wizard with clear navigation (e.g., Next/Back) and does not require login.",
-        "Wizard steps include inputs for: Contact, Summary, Skills, Experience, Education, Certifications, Projects, and Keyword suggestions.",
-        "All inputs have basic validation and clear labels; the page remains mobile-friendly and consistent with the existing design system (Tailwind + shadcn)."
+        "For multiple sampled careers across different categories (e.g., Frontend Developer, Data Analyst, Cybersecurity Analyst, UI Designer), the generated phases/topics/resources are career-appropriate and not generic filler.",
+        "Roadmaps no longer include obviously mismatched requirements like AWS/Vercel deployment or MongoDB/Node as mandatory steps for every technology career category.",
+        "No external calls are added; roadmap generation remains deterministic and purely local.",
+        "Existing roadmap pages/sections (homepage section and /career-roadmap-generator) continue to function and render without runtime errors."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
-          "operation": "create",
-          "description": "Create the ATS Resume Generator wizard UI as a step-by-step flow (Contact, Summary, Skills, Experience, Education, Certifications, Projects, Keywords) with local state, basic per-step validation, and Next/Back navigation. Use shadcn-ui building blocks (e.g., Card, Button, Input, Textarea, Separator, Badge/Alert where applicable) composed via existing components (do not edit any files under frontend/src/components/ui). Verify the component's usage instructions before implementing."
-        },
+          "path": "frontend/src/components/roadmap/roadmapTemplates.ts",
+          "operation": "modify",
+          "description": "Revise the template data used by getRoadmapTemplate(...) to better align phases/topics/resources with each career category (and selected high-traffic careers), remove or demote unsupported stack/deployment items (e.g., AWS/Vercel, MongoDB, Node/Express) from being mandatory, and keep all output deterministic and compatible with existing Roadmap UI rendering. Use the existing Tailwind + shadcn-ui design patterns already consumed by the Roadmap UI components; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-69",
+      "summary": "Create a dedicated ATS-friendly Resume Generator tool page with a step-by-step wizard, ATS preview, and TXT/clipboard exports.",
+      "acceptanceCriteria": [
+        "A new dedicated route exists for the ATS Resume Generator and loads successfully without blank/white-screen issues.",
+        "The UI is a multi-step wizard with next/back navigation and clearly separated sections (Contact, Summary, Skills, Experience, Education, Certifications, Projects, Keywords).",
+        "The tool produces a single-column ATS-friendly preview (no tables, no multi-column formatting in the generated output).",
+        "Users can copy the full resume output as plain text to clipboard successfully.",
+        "Users can download the resume as a .txt file containing the same content as the preview/output."
+      ],
+      "file_operations": [
         {
-          "path": "frontend/src/components/tools/resume/atsResumeTypes.ts",
+          "path": "frontend/src/components/tools/resume/AtsResumeGenerator.tsx",
           "operation": "create",
-          "description": "Define TypeScript types/interfaces for the wizard data model (contact details, skills, experiences with action verbs + metrics prompts, education, certifications, projects, and keyword suggestion inputs/outputs) to keep the wizard implementation maintainable."
-        },
-        {
-          "path": "frontend/src/components/tools/resume/atsResumeValidation.ts",
-          "operation": "create",
-          "description": "Add lightweight synchronous validation helpers for required fields and common formatting checks (e.g., email/phone presence, required titles/companies/dates, non-empty arrays) used by the wizard to show clear inline errors."
+          "description": "Implement the ATS Resume Generator as a multi-step wizard component (local state only) that collects the required sections and produces a deterministic, single-column plain-text resume preview. Use shadcn-ui components (e.g., Card, Button, Input, Textarea, Separator/Badge/Alert as appropriate) to match existing design system; verify the component's usage instructions before implementing. Use frontend/src/lib/clipboard.ts for copy-to-clipboard support, and generate a .txt download via browser APIs (no backend, no external calls)."
         },
         {
           "path": "frontend/src/pages/tools/AtsResumeGeneratorPage.tsx",
           "operation": "create",
-          "description": "Create a dedicated tool page that renders the wizard in the existing ToolPageLayout pattern (title, description, canonicalPath, content/faqs). Use shadcn-ui composition for any page-level containers if needed. Verify the component's usage instructions before implementing."
+          "description": "Add a dedicated tool page that renders the ATS Resume Generator within the existing ToolPageLayout so it includes the standard SEO structured data behavior and consistent spacing/typography. Use shadcn-ui styling conventions used across other tool pages; verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/seo/content/atsResumeGenerator.ts",
+          "path": "frontend/src/seo/content/atsResume.ts",
           "operation": "create",
-          "description": "Add SEO content + FAQs arrays for the ATS Resume Generator page (student-focused, India-relevant, ATS-friendly guidance). Keep content plain and consistent with existing SEO content modules."
+          "description": "Create SEO content + FAQs for the ATS Resume Generator page (clear English) following the same ContentSection/FAQItem pattern as existing tool SEO content files. Keep guidance focused on ATS-friendly single-column text resumes and student/fresher context. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-55",
-      "summary": "Generate an ATS-friendly single-column plain-text resume preview from wizard inputs with one-click copy-to-clipboard and .txt download (no backend calls).",
-      "acceptanceCriteria": [
-        "The generated resume output is plain, ATS-friendly text (no tables, no multi-column formatting) and updates based on the wizard inputs.",
-        "A \"Copy\" action copies the full resume text to clipboard using the existing clipboard utility pattern.",
-        "A \"Download\" action downloads a .txt file containing the full resume text.",
-        "Export actions work in modern browsers and do not require any backend calls."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/tools/resume/atsResumeTextGenerator.ts",
-          "operation": "create",
-          "description": "Implement pure functions that transform wizard inputs into a single-column ATS-friendly plain-text resume string (section headings, bullet formatting, consistent spacing). Include local-only keyword suggestion heuristics derived from provided skills/experience/project text (no network calls)."
-        },
-        {
-          "path": "frontend/src/components/tools/resume/AtsResumeGeneratorWizard.tsx",
-          "operation": "modify",
-          "description": "Wire live resume preview generation using atsResumeTextGenerator and render a plain-text preview panel. Add export actions: Copy uses frontend/src/lib/clipboard.ts copyToClipboard; Download creates a Blob and triggers a .txt file download with a sensible filename. Use shadcn-ui Button and any feedback patterns (e.g., toast/alert) via existing components/utilities. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/lib/clipboard.ts",
-          "operation": "modify",
-          "description": "If needed for the new tool, extend robustness/UX while preserving the existing clipboard utility pattern (e.g., ensure errors propagate cleanly so the UI can show a failure message). Keep it compatible with modern browsers and fallback behavior."
-        }
-      ]
-    },
-    {
-      "id": "REQ-56",
-      "summary": "Register the new ATS Resume Generator route and integrate it into existing SEO metadata and sitemap.xml.",
-      "acceptanceCriteria": [
-        "The new ATS Resume Generator route is registered in frontend/src/routes/Router.tsx using the same lazy-loading/Suspense approach as other tool pages.",
-        "The new route has an SEO metadata entry in frontend/src/seo/seoRoutes.ts so HeadTags sets title/meta/canonical correctly.",
-        "frontend/public/sitemap.xml includes the new ATS Resume Generator URL with appropriate changefreq/priority consistent with other tool routes.",
-        "Navigating directly to the new URL loads the page and shows correct SEO title/description in the document head."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/routes/Router.tsx",
-          "operation": "modify",
-          "description": "Add a new lazy-loaded tool page import for AtsResumeGeneratorPage and register a dedicated route path for the ATS Resume Generator using the same createRoute pattern as existing tool pages (ensuring it participates in existing Suspense loading)."
-        },
-        {
-          "path": "frontend/src/seo/seoRoutes.ts",
-          "operation": "modify",
-          "description": "Add SEO metadata entry for the ATS Resume Generator route (title, description, keywords, canonicalPath) consistent with other tool routes and targeted to engineering students in India."
-        },
-        {
-          "path": "frontend/public/sitemap.xml",
-          "operation": "modify",
-          "description": "Insert a new <url> entry for the ATS Resume Generator route with changefreq/priority aligned to other tool routes in the sitemap."
-        }
-      ]
-    },
-    {
-      "id": "REQ-57",
-      "summary": "Add a new tool card entry in the Resume & Placement Help section that navigates to the dedicated ATS Resume Generator page while leaving existing four tool cards and modal behavior unchanged.",
+      "id": "REQ-70",
+      "summary": "Add a new tool card in Resume & Placement Help that navigates to the ATS Resume Generator page while keeping existing four tools modal-based.",
       "acceptanceCriteria": [
         "The Resume & Placement Help section shows an additional tool card for the ATS Resume Generator.",
-        "Clicking the ATS Resume Generator card navigates to the dedicated ATS Resume Generator route (full page).",
-        "The existing four tools (Resume Bullet Generator, Internship Email Template, Interview Prep Checklist, LinkedIn Profile Checklist) continue to open in the current modal behavior unchanged.",
-        "The new card matches the existing styling and responsive grid behavior."
+        "Clicking the new card navigates to the dedicated ATS Resume Generator route (full page), not a modal.",
+        "The existing four tools (Resume Bullet Generator, Internship Email Template, Interview Prep Checklist, LinkedIn Profile Checklist) still open in the modal and behave as before."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/sections/ResumePlacementSection.tsx",
           "operation": "modify",
-          "description": "Add a fifth tool card styled identically to existing cards that navigates (full page) to the ATS Resume Generator route using TanStack Router navigation. Keep the existing tools array + dialog/modal openTool behavior unchanged for the original four cards. Use existing shadcn-ui Card styling already present; do not edit any files under frontend/src/components/ui. Verify the component's usage instructions before implementing."
+          "description": "Add an additional card for the ATS Resume Generator that uses TanStack Router navigation to go to the dedicated route (not the existing modal flow). Keep the existing four cards unchanged and still opening the dialog with the existing tool components. Maintain current Tailwind + shadcn-ui Card styling and interaction patterns; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-71",
+      "summary": "Register ATS Resume Generator route and add SEO metadata + sitemap entry to integrate with existing technical SEO system.",
+      "acceptanceCriteria": [
+        "The ATS Resume Generator route is registered in the router and is code-split/lazy-loaded similar to other tool routes.",
+        "`seoRoutes` contains an entry for the new ATS Resume Generator path with title/description/keywords/canonicalPath.",
+        "`sitemap.xml` includes the new ATS Resume Generator URL entry.",
+        "The new page renders HeadTags + StructuredData the same way other tool pages do (no layout impact)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/routes/Router.tsx",
+          "operation": "modify",
+          "description": "Register a new lazy-loaded tool page route for the ATS Resume Generator (consistent with existing tool route patterns) and ensure it renders through the existing RootLayout (HeadTags/StickyNavbar/Footer/Toaster) without introducing any authentication flow. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/seo/seoRoutes.ts",
+          "operation": "modify",
+          "description": "Add a new seoRoutes entry for the ATS Resume Generator path with clear English title/description/keywords and the correct canonicalPath, matching the existing SEO metadata structure. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "modify",
+          "description": "Add the ATS Resume Generator URL to the sitemap so it is discoverable by search engines, following the existing sitemap formatting and URL conventions."
         }
       ]
     }
